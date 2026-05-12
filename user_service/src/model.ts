@@ -1,12 +1,32 @@
 import mongoose, { Document, Schema } from "mongoose";
 
+export interface ILibrary {
+  name: string;
+  songs: string[];
+}
+
 export interface IUser extends Document {
   name: string;
   email: string;
   password: string;
   role: string;
-  playlist: string[];
+  libraries: ILibrary[];
 }
+
+const librarySchema: Schema = new Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    songs: [
+      {
+        type: String,
+      },
+    ],
+  },
+  { _id: false },
+);
 
 const schema: Schema<IUser> = new Schema(
   {
@@ -27,12 +47,10 @@ const schema: Schema<IUser> = new Schema(
       type: String,
       default: "user",
     },
-    playlist: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    libraries: {
+      type: [librarySchema],
+      default: [],
+    },
   },
   {
     timestamps: true,

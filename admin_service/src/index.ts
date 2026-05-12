@@ -17,8 +17,8 @@ cloudinary.v2.config({
 export const redisClient = redis.createClient({
   password: process.env.REDIS_PW as string,
   socket: {
-    host: "redis-15644.crce217.ap-south-1-1.ec2.cloud.redislabs.com",
-    port: 15644,
+    host: "redis-11200.c245.us-east-1-3.ec2.cloud.redislabs.com",
+    port: 11200,
   },
 });
 
